@@ -1,3 +1,6 @@
+<%@taglib  prefix="c" 
+uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="java.util.List"%>
 <%@page import="br.pucpr.prog4.lojaoldschool.models.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,6 +12,22 @@
     </head>
     <body>
         <h1>LISTA DE PRODUTOS</h1>
+        
+        <c:forEach var="produto"
+                   items="${produtos}">
+            
+            <div>
+                <p>${produto.nome}
+                <a href="produto-detalhe?id=${produto.id}">
+                    <img src="../imagens/0${produto.id}.jpg" 
+                         alt="produto ${produto.id}" />
+                </a>
+                <p>R$ ${produto.preço}</p>
+            </div>
+            
+        </c:forEach>
+        
+        
         <%
          List<Produto> produtos;
          produtos = (List<Produto>) request.getAttribute("produtos");
